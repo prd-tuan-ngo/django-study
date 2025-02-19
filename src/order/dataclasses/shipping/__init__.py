@@ -6,7 +6,7 @@
 # @link olivia.paradox.ai
 #
 __author__ = "tuan.ngo"
-__date__ = "17:14"
+__date__ = "23:10"
 
-class BaseService:
-    def get_user(self) -> User:
+from .ship_order import ShippingOrder
+from .shipping_order_details import ShippingOrderDetails
