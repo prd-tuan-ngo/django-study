@@ -14,8 +14,8 @@ from core.models import BaseTimeStampedModel
 from order.managers.order_details import OrderDetailsManager
 
 
-class OrderDetails(BaseTimeStampedModel):
-    order = models.ForeignKey('Orders', on_delete=models.DO_NOTHING, db_constraint=False)
+class OrderDetail(BaseTimeStampedModel):
+    order = models.ForeignKey('Orders', related_name="order_details", on_delete=models.DO_NOTHING, db_constraint=False)
     product = models.ForeignKey('Products', on_delete=models.DO_NOTHING, db_constraint=False)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)

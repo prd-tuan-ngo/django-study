@@ -14,7 +14,7 @@ from core.models import BaseTimeStampedModel
 from order.managers.orders import OrdersManager
 
 
-class Orders(BaseTimeStampedModel):
+class Order(BaseTimeStampedModel):
     order_uuid = models.CharField(max_length=100, unique=True)
     user = models.ForeignKey('user.Users', on_delete=models.DO_NOTHING)
     status = models.CharField(max_length=100)

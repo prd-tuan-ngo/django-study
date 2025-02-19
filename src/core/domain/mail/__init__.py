@@ -6,7 +6,4 @@
 # @link olivia.paradox.ai
 #
 __author__ = "tuan.ngo"
-__date__ = "17:14"
-
-class BaseService:
-    def get_user(self) -> User:
+__date__ = "14:12"
