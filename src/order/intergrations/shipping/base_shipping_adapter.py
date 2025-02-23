@@ -10,13 +10,13 @@ __date__ = "23:04"
 
 from abc import abstractmethod, ABC
 
-from order.dataclasses.order import OrderDetails
+from order.dataclasses.order import OrderDetailData
 from order.dataclasses.shipping import ShippingOrder, ShippingOrderDetails
 
 
 class IShippingAdapter(ABC):
     @abstractmethod
-    def create_shipping_order(self, order_details: OrderDetails) -> ShippingOrder:
+    def create_shipping_order(self, order_details: OrderDetailData) -> ShippingOrder:
         ...
 
     @abstractmethod

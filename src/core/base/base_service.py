@@ -12,5 +12,9 @@ from core.dataclasses.user import User
 
 
 class BaseService:
-    def get_user(self) -> User:
-        pass
+    @classmethod
+    def get_user(cls) -> User:
+        """
+        Get user
+        """
+        return User(user_id=55555, name="hardcoded_user")

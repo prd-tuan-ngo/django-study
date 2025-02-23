@@ -13,7 +13,8 @@ from typing import List, Dict
 from core.base.base_service import BaseService
 from core.domain.mail.mail_service import MailService
 from core.utils.function import safe_executor
-from order.dataclasses.order import Order
+from order.constants.order import OrderStatus
+from order.dataclasses.order import OrderData
 from order.domain.getter import OrderGetter
 from order.domain.handler import OrderHandler
 
@@ -24,21 +25,23 @@ class OrderService(BaseService):
 
     @classmethod
     @safe_executor(with_log=True, re_raise=True)
-    def create_order(cls, order: Dict) -> Order:
+    def create_order(cls, order: Dict) -> OrderData:
         """
         Create order
         """
-        if order := cls.handler.create_order(order):
-            user_id = super().get_user().user_id
+        user_id = super().get_user().user_id
+        if order := cls.handler.create_order(user_id, order):
             cls.handler.send_mail_order_created(user_id, order)
             return order
         raise Exception("Failed to create order")
 
     @classmethod
-    def get_orders_by_user(cls, user_id: int, order_status: int) -> List[Order]:
+    def get_orders_by_user(cls, user_id: int, order_status: List[int]) -> List[OrderData]:
         """
         Get orders by user_id and order_status
         """
+        if not user_id:
+            user_id = super().get_user().user_id
         return cls.getter.get_orders_by_user(user_id, order_status)
 
     @classmethod

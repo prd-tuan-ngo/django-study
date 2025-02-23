@@ -10,14 +10,14 @@ __date__ = "23:43"
 
 from dataclasses import dataclass, Field, field
 
-from order.dataclasses.order.order import Order
+from order.dataclasses.order.orderdata import OrderData
 from order.dataclasses.shipping import ShippingOrder, ShippingOrderDetails
 from order.dataclasses.shop import Shop
 
 
 @dataclass
-class OrderDetails:
-    order : Order = field(default_factory=Order)
+class OrderDetailData:
+    order : OrderData = field(default_factory=OrderData)
     shipping_order: ShippingOrderDetails  = field(default_factory=ShippingOrderDetails)
     shop: Shop  = field(default_factory=Shop)
     to_address : str = field(default_factory=str)

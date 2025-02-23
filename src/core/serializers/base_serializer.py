@@ -6,7 +6,10 @@
 # @link olivia.paradox.ai
 #
 __author__ = "tuan.ngo"
-__date__ = "23:43"
+__date__ = "17:10"
 
-from .orderdata import OrderData
-from .order_details import OrderDetailData
+from rest_framework import serializers
+
+
+class BaseSerializer(serializers.ModelSerializer):
+    pass

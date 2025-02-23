@@ -18,7 +18,7 @@ from django.conf import settings
 import requests
 
 from order.constants.shipping_provider import GHNShippingProvider
-from order.dataclasses.order.order_details import OrderDetails
+from order.dataclasses.order.order_details import OrderDetailData
 from order.dataclasses.shipping import ShippingOrder, ShippingOrderDetails
 from order.intergrations.shipping.base_shipping_adapter import IShippingAdapter
 from order.intergrations.shipping.ghn.sdo.create_shipping_order_input import GHNCreateShippingOderInput
@@ -27,7 +27,7 @@ from src.order.intergrations.shipping.ghn.sdo.get_shipping_order_input import GH
 
 
 class GHNShippingAdapter(IShippingAdapter):
-    def create_shipping_order(self, order_details: OrderDetails) -> ShippingOrder:
+    def create_shipping_order(self, order_details: OrderDetailData) -> ShippingOrder:
         try:
             create_shipping_order_input = GHNCreateShippingOderInput(
                 token = settings.GHN_CLIENT_TOKEN,

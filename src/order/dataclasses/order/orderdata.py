@@ -12,7 +12,8 @@ from dataclasses import dataclass, field
 
 
 @dataclass
-class Order:
+class OrderData:
+    id : int = field(default_factory=int)
     order_uuid : str = field(default_factory=str)
     user_id : int = field(default_factory=int)
     status : int = field(default_factory=int)
