@@ -24,7 +24,7 @@ class OrderService(BaseService):
 
     @classmethod
     @safe_executor(with_log=True, re_raise=True)
-    def create_order(cls, order: Dict):
+    def create_order(cls, order: Dict) -> Order:
         """
         Create order
         """

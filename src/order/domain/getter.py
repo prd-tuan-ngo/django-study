@@ -11,7 +11,7 @@ __date__ = "17:27"
 from typing import List
 
 from core.base.base_getter import BaseGetter
-from order.models.orders import Order
+from order.models.order import Order
 
 
 class OrderGetter(BaseGetter):

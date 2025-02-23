@@ -14,15 +14,12 @@ from core.models import BaseTimeStampedModel
 from order.managers.products import ProductManager
 
 
-class Products(BaseTimeStampedModel):
+class Product(BaseTimeStampedModel):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
 
     objects = ProductManager()
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         db_table = 'products'
