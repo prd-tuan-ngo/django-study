@@ -8,5 +8,9 @@
 __author__ = "tuan.ngo"
 __date__ = "17:14"
 
+from core.dataclasses.user import User
+
+
 class BaseService:
     def get_user(self) -> User:
+        pass

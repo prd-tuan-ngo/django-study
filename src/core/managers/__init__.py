@@ -8,7 +8,7 @@
 __author__ = "tuan.ngo"
 __date__ = "15:04"
 
-from base_cache_manager import BaseCacheManager
-from base_time_manager import BaseTimeManager
-from base_manager import BaseManager
-from base_queryset import BaseQuerySet
+from .base_cache_manager import BaseCacheManager
+from .base_time_manager import BaseTimeManager
+from .base_manager import BaseManager
+from .base_queryset import BaseQuerySet

@@ -16,14 +16,10 @@ from order.managers.orders import OrdersManager
 
 class Order(BaseTimeStampedModel):
     order_uuid = models.CharField(max_length=100, unique=True)
-    user = models.ForeignKey('user.Users', on_delete=models.DO_NOTHING)
+    user_id =  models.IntegerField()
     status = models.CharField(max_length=100)
 
     objects = OrdersManager()
-
-
-    def __str__(self):
-        return self.order_id
 
     class Meta:
         db_table = 'orders'
