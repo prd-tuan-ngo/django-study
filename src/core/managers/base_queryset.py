@@ -12,14 +12,5 @@ from django.db import models
 
 
 class BaseQuerySet(models.QuerySet):
-    def delete(self):
-        return super().update(is_deleted=True)
-
     def hard_delete(self):
         return super().delete()
-
-    def active(self):
-        return self.filter(is_active=True)
-
-    def inactive(self):
-        return self.filter(is_active=False)

@@ -29,6 +29,7 @@ pycodestyle                     ="^2.7.0"
 pydocstyle                      ="^6.1.1"
 pyflakes                        ="^2.3.1" # via flake8
 pytest                          ="^6.2.5"
+factory-boy                     = "3.3.3"
 
 # Py test
 

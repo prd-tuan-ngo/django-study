@@ -25,7 +25,7 @@ class OrdersManager(BaseManager):
         return OrderQuerySet(self.model, using=self._db)
 
     def get_order_details(self, order_id):
-        return self.get_queryset().get(id=order_id).prefetch_related('order_details').first()
+        return self.get_queryset().filter(id=order_id).prefetch_related('order_detail').first()
 
     def get_orders_by_user(self, user_id: int, order_status: list) -> List:
         qs = self.get_queryset().belong_to_user(user_id)
