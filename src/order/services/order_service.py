@@ -20,8 +20,8 @@ from order.domain.handler import OrderHandler
 
 
 class OrderService(BaseService):
-    handler = OrderHandler()
-    getter = OrderGetter()
+    handler = OrderHandler
+    getter = OrderGetter
 
     @classmethod
     @safe_executor(with_log=True, re_raise=True)

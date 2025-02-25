@@ -34,12 +34,16 @@ class BaseOrderManagerTest(BaseManagerTest):
         Product.objects.all().delete()
 
 class TestGetOrderDetails(BaseOrderManagerTest):
-    def test_get_order_details_when_order_exiting_with_new_status(self):
+    def setUp(self):
+        super().setUp()
+        self.instance_under_test = Order.objects
+
+    def test_get_order_details_when_order_existing_with_new_status(self):
         # Arrange
         self.setUp()
 
         # Act
-        order = Order.objects.get_order_details(self.order_1_new.id)
+        order = self.instance_under_test.get_order_details(self.order_1_new.id)
         order_detail = order.order_detail.first()
 
         # Assert
@@ -50,12 +54,12 @@ class TestGetOrderDetails(BaseOrderManagerTest):
         # Teardown
         self.tearDown()
 
-    def test_get_order_details_when_order_exiting_with_canceled_status(self):
+    def test_get_order_details_when_order_existing_with_canceled_status(self):
         # Arrange
         self.setUp()
 
         # Act
-        order = Order.objects.get_order_details(self.order_3_canceled.id)
+        order = self.instance_under_test.get_order_details(self.order_3_canceled.id)
         order_detail = order.order_detail.first()
 
         # Assert
@@ -66,13 +70,13 @@ class TestGetOrderDetails(BaseOrderManagerTest):
         # Teardown
         self.tearDown()
 
-    def test_get_order_details_when_order_not_exiting(self):
+    def test_get_order_details_when_order_not_exist(self):
         # Arrange
         self.setUp()
 
         # Act
         not_exist_order_id = 9999999999
-        order = Order.objects.get_order_details(not_exist_order_id)
+        order = self.instance_under_test.get_order_details(not_exist_order_id)
 
         # Assert
         self.assertIsNone(order)

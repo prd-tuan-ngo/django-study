@@ -19,13 +19,15 @@ from order.models.order import Order
 
 
 class OrderGetter(BaseGetter):
-    def get_order_details(self, order_id):
+    @classmethod
+    def get_order_details(cls, order_id):
         """
         Get order details by order_id
         """
         return Order.objects.get_order_details(order_id)
 
-    def get_orders_by_user(self, user_id: int, order_status: List[int]) -> List[OrderData]:
+    @classmethod
+    def get_orders_by_user(cls, user_id: int, order_status: List[int]) -> List[OrderData]:
         """
         Get orders by user_id and order_status
         """

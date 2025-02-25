@@ -19,14 +19,16 @@ class OrderHandler(BaseHandler):
     def __init__(self):
         pass
 
-    def create_order(self, user_id: int, order_data: Dict) -> OrderData:
+    @classmethod
+    def create_order(cls, user_id: int, order_data: Dict) -> OrderData:
         """
         Create order
         """
         order = CreateOrderAction().create_order(user_id, order_data)
         return order
 
-    def send_mail_order_created(self, user_id: int, order: OrderData):
+    @classmethod
+    def send_mail_order_created(cls, user_id: int, order: OrderData):
         # TODO send mail after order created.
         pass
 
