@@ -16,4 +16,5 @@ class OrderData:
     id : int = field(default_factory=int)
     order_uuid : str = field(default_factory=str)
     user_id : int = field(default_factory=int)
+    shipping_order_uuid : str = field(default_factory=str)
     status : int = field(default_factory=int)

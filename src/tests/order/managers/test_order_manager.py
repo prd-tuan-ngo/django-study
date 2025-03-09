@@ -8,6 +8,8 @@
 __author__ = "tuan.ngo"
 __date__ = "20:52"
 
+import pytest
+
 from order.constants.order import OrderStatus
 from order.models import Order, OrderDetail, Product
 from tests.base.base_manager_test import BaseManagerTest
@@ -15,7 +17,10 @@ from tests.factory import OrderFactory, OrderDetailFactory, ProductFactory
 
 
 class BaseOrderManagerTest(BaseManagerTest):
-    def setUp(self):
+    @pytest.fixture(autouse=True)
+    def _setUp(self):
+        self.instance_under_test = Order.objects
+
         self.product_1 = ProductFactory(name="product_1", price=1000, description="description_1")
         self.product_2 = ProductFactory(name="product_2", price=2000, description="description_2")
 
@@ -28,52 +33,40 @@ class BaseOrderManagerTest(BaseManagerTest):
         self.order_detail_2 = OrderDetailFactory(order_id=self.order_2_new.id, product_id=self.product_2.id, quantity=2, price=4000, total=8000)
         self.order_detail_3 = OrderDetailFactory(order_id=self.order_3_canceled.id, product_id=self.product_2.id, quantity=1, price=2000, total=2000)
 
-    def tearDown(self):
+
+    def _tearDown(self):
         OrderDetail.objects.all().delete()
         Order.objects.all().delete()
         Product.objects.all().delete()
 
 class TestGetOrderDetails(BaseOrderManagerTest):
-    def setUp(self):
-        super().setUp()
-        self.instance_under_test = Order.objects
-
     def test_get_order_details_when_order_existing_with_new_status(self):
-        # Arrange
-        self.setUp()
-
         # Act
         order = self.instance_under_test.get_order_details(self.order_1_new.id)
         order_detail = order.order_detail.first()
 
         # Assert
-        self.assertEqual(order.order_uuid, "uuid_1231")
-        self.assertEqual(str(order.status), str(OrderStatus.NEW))
-        self.assertEqual(order_detail.price, 1000)
+        self.assertEqual("uuid_1231", order.order_uuid)
+        self.assertEqual(str(OrderStatus.NEW), str(order.status))
+        self.assertEqual(1000, order_detail.price)
 
-        # Teardown
-        self.tearDown()
+        # Tear down
+        self._tearDown()
 
     def test_get_order_details_when_order_existing_with_canceled_status(self):
-        # Arrange
-        self.setUp()
-
         # Act
         order = self.instance_under_test.get_order_details(self.order_3_canceled.id)
         order_detail = order.order_detail.first()
 
         # Assert
-        self.assertEqual(order.order_uuid, "uuid_1233")
-        self.assertEqual(str(order.status), str(OrderStatus.CANCELLED))
-        self.assertEqual(order_detail.price, 2000)
+        self.assertEqual("uuid_1233", order.order_uuid)
+        self.assertEqual(str(OrderStatus.CANCELLED), str(order.status))
+        self.assertEqual(2000, order_detail.price)
 
-        # Teardown
-        self.tearDown()
+        # Tear down
+        self._tearDown()
 
     def test_get_order_details_when_order_not_exist(self):
-        # Arrange
-        self.setUp()
-
         # Act
         not_exist_order_id = 9999999999
         order = self.instance_under_test.get_order_details(not_exist_order_id)
@@ -81,5 +74,5 @@ class TestGetOrderDetails(BaseOrderManagerTest):
         # Assert
         self.assertIsNone(order)
 
-        # Teardown
-        self.tearDown()
+        # Tear down
+        self._tearDown()
