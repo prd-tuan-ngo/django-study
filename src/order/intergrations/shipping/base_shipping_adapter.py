@@ -16,7 +16,7 @@ from order.dataclasses.shipping import ShippingOrder, ShippingOrderDetails
 
 class IShippingAdapter(ABC):
     @abstractmethod
-    def create_shipping_order(self, order_details: OrderDetailData) -> ShippingOrder:
+    def create_shipping_order(self, order_detail: OrderDetailData) -> ShippingOrder:
         ...
 
     @abstractmethod

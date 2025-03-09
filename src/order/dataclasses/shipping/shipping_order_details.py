@@ -14,6 +14,5 @@ from dataclasses import dataclass, field
 @dataclass
 class ShippingOrderDetails:
     shipping_order_uuid: str = field(default_factory=str)
-    client_id: str = field(default_factory=str)
     is_cod: bool = field(default_factory=bool)
     log: list = field(default_factory=list)

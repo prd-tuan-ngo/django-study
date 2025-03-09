@@ -22,15 +22,13 @@ class BaseOrderViewSetTest(BaseTest):
     @pytest.fixture(autouse=True)
     def _setUp(self):
         self.instance_under_test = APIClient()
-        self.base_url = "/api/v1/order/"
 
-    @pytest.fixture(autouse=True)
     def _tearDown(self):
         pass
 
 class TestListOrders(BaseOrderViewSetTest):
-    def __init__(self):
-        super().__init__()
+    @pytest.fixture(autouse=True)
+    def _setUpInternal(self):
         self.base_url = "/api/v1/order/list-orders"
 
     @patch.object(OrderService, "get_orders_by_user", StubOrderService.get_orders_by_user_with_new_status)
@@ -41,6 +39,9 @@ class TestListOrders(BaseOrderViewSetTest):
         # Assert
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
+        # Tear down
+        self._tearDown()
+
     @patch.object(OrderService, "get_orders_by_user", StubOrderService.get_orders_with_raise_exception)
     def test_list_orders_with_new_status_and_return_exception(self):
         # Act
@@ -48,3 +49,6 @@ class TestListOrders(BaseOrderViewSetTest):
 
         # Assert
         self.assertEqual(status.HTTP_500_INTERNAL_SERVER_ERROR, response.status_code)
+
+        # Tear down
+        self._tearDown()
