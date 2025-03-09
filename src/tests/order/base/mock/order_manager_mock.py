@@ -16,7 +16,7 @@ from tests.base.base_mock import BaseMock
 from tests.factory import OrderFactory
 
 
-class OrderManagerMock(BaseMock):
+class MockOrderManager(BaseMock):
     def __init__(self):
         super().__init__()
         self.init_data = self.init_data()
