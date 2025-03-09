@@ -8,5 +8,5 @@
 __author__ = "tuan.ngo"
 __date__ = "23:43"
 
-from .orderdata import OrderData
 from .order_details import OrderDetailData
+from .orderdata import OrderData

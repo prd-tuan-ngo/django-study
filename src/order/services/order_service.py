@@ -11,9 +11,7 @@ __date__ = "17:06"
 from typing import List, Dict
 
 from core.base.base_service import BaseService
-from core.domain.mail.mail_service import MailService
 from core.utils.function import safe_executor
-from order.constants.order import OrderStatus
 from order.dataclasses.order import OrderData
 from order.domain.getter import OrderGetter
 from order.domain.handler import OrderHandler

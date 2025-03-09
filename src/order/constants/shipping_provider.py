@@ -8,6 +8,12 @@
 __author__ = "tuan.ngo"
 __date__ = "23:17"
 
+class ShippingProvider:
+    GHN = 1
+    GHTK = 2
+    VIETTEL_POST = 3
+    VN_POST = 4
+
 
 class ShippingProviderBaseEndPoint:
     GHN = "https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order"

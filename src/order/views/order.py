@@ -8,10 +8,7 @@
 __author__ = "tuan.ngo"
 __date__ = "15:47"
 
-from dataclasses import asdict
-
-from rest_framework import viewsets, permissions, status
-from rest_framework.authentication import TokenAuthentication
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -32,7 +29,10 @@ class OrderViewSet(viewsets.ModelViewSet):
         @apiName ListOrders
         @apiGroup Order
         @apiParam {json}
-            {}
+            {
+                "user_id": 1,
+                "order_status": ["NEW"]
+            }
         """
         try:
             request_params = request.query_params.copy()
@@ -55,7 +55,19 @@ class OrderViewSet(viewsets.ModelViewSet):
         @apiName CreateOrder
         @apiGroup Order
         @apiParam {json} data The data to save the order
-            {}
+            "order_data": {
+                "order_details": [
+                    {
+                        "product_id": p1,
+                        "quantity": 1,
+                        "price": 1000
+                    }
+                ]
+            }
+            "shipping_data": {
+                "shipping_provider": 1,
+                "shop_id": shop_1111
+            }
         """
         try:
             order = request.data

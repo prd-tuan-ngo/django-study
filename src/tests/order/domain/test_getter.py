@@ -9,37 +9,40 @@ __author__ = "tuan.ngo"
 __date__ = "16:49"
 from unittest.mock import patch
 
+import pytest
+
 from order.constants.order import OrderStatus
 from order.domain.getter import OrderGetter
 from tests.base.base_test import BaseTest
-from tests.order.base.mock.order_manager_mock import OrderManagerMock
+from tests.order.base.mock.order_manager_mock import MockOrderManager
 
 
 class BaseGetterTest(BaseTest):
-    def setUp(self):
+    @pytest.fixture(autouse=True)
+    def _setUp(self):
         self.instance_under_test = OrderGetter
-        pass
 
-    def tearDown(self):
+    def _tearDown(self):
         pass
 
 class TestGetOrderByUser(BaseGetterTest):
     @patch('order.managers.orders.OrdersManager.get_orders_by_user')
     def test_get_order_by_user_with_no_status_filter_and_return_list_orders(self, order_manager_mock):
         # Arrange
-        self.setUp()
         user_id = 1111
         order_status_filter = []
-        order_manager_mock.side_effect = OrderManagerMock().mock_get_orders_by_user
+        order_manager_mock.side_effect = MockOrderManager().mock_get_orders_by_user
 
         #Act
         orders = self.instance_under_test.get_orders_by_user(user_id, order_status_filter)
 
         #Assert
         self.assertEqual(len(orders), 3)
+        # Check number of call. It will be useful in case we want to check how many times the method is called
+        order_manager_mock.assert_called_once_with(user_id, order_status_filter)
 
-        #Teardown
-        self.tearDown()
+        # Tear down
+        self._tearDown()
 
     @patch('order.domain.getter.OrderGetter.get_orders_by_user')
     def test_get_order_by_user_with_status_filter_new_and_return_list_orders(self, order_getter_mock):

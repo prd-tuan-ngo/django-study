@@ -17,7 +17,7 @@ from order.managers.orders import OrdersManager
 class Order(BaseTimeStampedModel):
     order_uuid = models.CharField(max_length=100)
     user_id =  models.IntegerField()
-    status = models.CharField(max_length=100)
+    status = models.IntegerField(max_length=100)
 
     objects = OrdersManager()
 

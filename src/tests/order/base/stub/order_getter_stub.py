@@ -9,9 +9,8 @@ __date__ = "21:32"
 from typing import List
 
 from order.constants.order import OrderStatus
-from order.models import Order
+from order.dataclasses.order import OrderData
 from tests.base.base_stub import BaseStub
-from tests.factory import OrderFactory
 
 
 class StubOrderGetter(BaseStub):
@@ -19,16 +18,16 @@ class StubOrderGetter(BaseStub):
         super().__init__()
 
     @classmethod
-    def get_orders_by_user_with_new_status(cls, user_id: int, order_status: List[int]) -> List[Order]:
+    def get_orders_by_user_with_new_status(cls, user_id: int, order_status: List[int]) -> List[OrderData]:
         return [
-            OrderFactory.build(id=1, order_uuid="uuid_1231", user_id=1111, status=OrderStatus.NEW),
-            OrderFactory.build(id=2, order_uuid="uuid_1232", user_id=1112, status=OrderStatus.NEW)
+            OrderData(id=1, order_uuid="uuid_1231", user_id=1111, status=OrderStatus.NEW),
+            OrderData(id=2, order_uuid="uuid_1232", user_id=1112, status=OrderStatus.NEW)
         ]
 
     @classmethod
-    def get_orders_by_user_with_all_status(cls, user_id: int, order_status: List[int]) -> List[Order]:
+    def get_orders_by_user_with_all_status(cls, user_id: int, order_status: List[int]) -> List[OrderData]:
         return [
-            OrderFactory.build(id=1, order_uuid="uuid_1231", user_id=1111, status=OrderStatus.NEW),
-            OrderFactory.build(id=2, order_uuid="uuid_1232", user_id=1112, status=OrderStatus.NEW),
-            OrderFactory.build(id=3, order_uuid="uuid_1232", user_id=1112, status=OrderStatus.COMPLETED)
+            OrderData(id=1, order_uuid="uuid_1231", user_id=1111, status=OrderStatus.NEW),
+            OrderData(id=2, order_uuid="uuid_1232", user_id=1112, status=OrderStatus.NEW),
+            OrderData(id=3, order_uuid="uuid_1233", user_id=1112, status=OrderStatus.COMPLETED)
         ]

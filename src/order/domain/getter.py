@@ -10,8 +10,6 @@ __date__ = "17:27"
 
 from typing import List
 
-from django.forms.models import model_to_dict
-
 from core.base.base_getter import BaseGetter
 from order.converter.order_to_order_data_converter import OrderToOrderDataConverter
 from order.dataclasses.order import OrderData

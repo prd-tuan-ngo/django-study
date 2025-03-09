@@ -15,6 +15,5 @@ from dataclasses import dataclass, field
 class ShippingOrder:
     order_uuid: str = field(default_factory=str)
     shipping_order_uuid: str = field(default_factory=str)
-    client_id: str = field(default_factory=str)
     provider: int = field(default_factory=int)
     status: int = field(default_factory=int)

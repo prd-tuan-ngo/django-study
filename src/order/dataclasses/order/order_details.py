@@ -8,10 +8,10 @@
 __author__ = "tuan.ngo"
 __date__ = "23:43"
 
-from dataclasses import dataclass, Field, field
+from dataclasses import dataclass, field
 
 from order.dataclasses.order.orderdata import OrderData
-from order.dataclasses.shipping import ShippingOrder, ShippingOrderDetails
+from order.dataclasses.shipping import ShippingOrderDetails
 from order.dataclasses.shop import Shop
 
 
