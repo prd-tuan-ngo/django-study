@@ -11,13 +11,12 @@ from unittest.mock import patch
 
 import pytest
 
-from order.constants.order import OrderStatus
 from order.domain.getter import OrderGetter
-from tests.base.base_test import BaseTest
+from tests.base.base_getter_test import BaseGetterTest
 from tests.order.base.mock.order_manager_mock import MockOrderManager
 
 
-class BaseGetterTest(BaseTest):
+class BaseOrderGetterTest(BaseGetterTest):
     @pytest.fixture(autouse=True)
     def _setUp(self):
         self.instance_under_test = OrderGetter
@@ -25,7 +24,9 @@ class BaseGetterTest(BaseTest):
     def _tearDown(self):
         pass
 
-class TestGetOrderByUser(BaseGetterTest):
+
+class TestGetOrderByUser(BaseOrderGetterTest):
+
     @patch('order.managers.orders.OrdersManager.get_orders_by_user')
     def test_get_order_by_user_with_no_status_filter_and_return_list_orders(self, order_manager_mock):
         # Arrange

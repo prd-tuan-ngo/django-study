@@ -14,9 +14,11 @@ class ShippingAdapterFactory:
     SHIPPING_ADAPTERS = {
         ShippingProvider.GHN: GHNShippingAdapter,
     }
+
     @staticmethod
-    def get_shipping_adapter(shipping_Provider: int):
-        shipping_provider = ShippingAdapterFactory.SHIPPING_ADAPTERS.get(shipping_Provider)
+    def get_shipping_adapter(shipping_provider: int):
+        shipping_provider = ShippingAdapterFactory.SHIPPING_ADAPTERS.get(shipping_provider)
         if not shipping_provider:
             raise Exception("Shipping provider not found")
         return shipping_provider()
+

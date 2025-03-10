@@ -15,11 +15,11 @@ import pytest
 from order.constants.order import OrderStatus
 from order.domain.getter import OrderGetter
 from order.services.order_service import OrderService
-from tests.base.base_test import BaseTest
+from tests.base.base_service_test import BaseServiceTest
 from tests.order.base.stub.order_getter_stub import StubOrderGetter
 
 
-class BaseOrderServiceTest(BaseTest):
+class BaseOrderServiceTest(BaseServiceTest):
     @pytest.fixture(autouse=True)
     def _setUp(self):
         self.instance_under_test = OrderService

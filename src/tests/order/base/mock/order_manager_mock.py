@@ -12,7 +12,7 @@ from typing import List
 
 from order.constants.order import OrderStatus
 from order.models import Order
-from tests.base.base_mock import BaseMock
+from tests.base.mock.base_mock import BaseMock
 from tests.factory import OrderFactory
 
 
