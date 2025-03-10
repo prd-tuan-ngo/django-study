@@ -15,10 +15,11 @@ from rest_framework.test import APIClient
 
 from order.services.order_service import OrderService
 from tests.base.base_test import BaseTest
+from tests.base.base_viewset_test import BaseViewSetTest
 from tests.order.base.stub.order_service_stub import StubOrderService
 
 
-class BaseOrderViewSetTest(BaseTest):
+class BaseOrderViewSetTest(BaseViewSetTest):
     @pytest.fixture(autouse=True)
     def _setUp(self):
         self.instance_under_test = APIClient()

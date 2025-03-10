@@ -44,6 +44,7 @@ class TestGetOrderByUser(BaseOrderServiceTest):
 ````
 
 ### MOCK example
+We can use mocks to verify the number of calls to a specific dependency. This is useful when checking database queries or third-party API calls.
 
 ````python
 class BaseGetterTest(BaseTest):
@@ -101,3 +102,9 @@ class TestCreateOrderActionWithFakeShippingService(BaseCreateOrderActionTest):
         # Tear down
         self._tearDown()
 ````
+
+### Different MOCK and STUB
+STUB focus on State Testing while Mock focus on Behavior Testing.
+
+Dive deep into State Testing vs Behavior Testing: https://coderstower.com/2019/09/24/unit-testing-behavior-vs-state/
+

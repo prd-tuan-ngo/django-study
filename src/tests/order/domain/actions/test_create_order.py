@@ -15,11 +15,11 @@ from order.dataclasses.shipping import ShippingOrder
 from order.domain.actions.create_order import CreateOrderAction
 from order.intergrations.shipping.shipper_factory import ShippingAdapterFactory
 from order.models import Order
-from tests.base.base_test import BaseTest
+from tests.base.base_handler_test import BaseHandlerTest
 from tests.order.base.fake.shipping_adapter_fake import FakeShippingAdapter
 
 
-class BaseCreateOrderActionTest(BaseTest):
+class BaseCreateOrderActionTest(BaseHandlerTest):
     @pytest.fixture(autouse=True)
     def _setUp(self):
         self.instance_under_test = CreateOrderAction()

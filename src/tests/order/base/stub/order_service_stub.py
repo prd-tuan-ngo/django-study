@@ -10,7 +10,7 @@ from typing import List
 
 from order.constants.order import OrderStatus
 from order.dataclasses.order import OrderData
-from tests.base.base_stub import BaseStub
+from tests.base.mock.base_stub import BaseStub
 
 
 class StubOrderService(BaseStub):
